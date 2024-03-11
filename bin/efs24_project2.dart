@@ -1,6 +1,10 @@
 import 'package:efs24_project2/efs24_project2.dart';
 
 void main(List<String> arguments) {
+
+  var add16RAM = upgradeRAM(16);
+
+
   // Using different constructors
   PC pc1 = PC(
       price: 2000,
@@ -44,27 +48,19 @@ void main(List<String> arguments) {
   assert(pc2.installedPrograms.contains("Valorant"));
 
   // Using замикаюча функція
-  print("=== Upgrade ram ===");
-  pc2.upgradeRAM(pc2, 8);
+  print("=== Upgrade ram ===");  
+  add16RAM(pc2);
   pc2.printInfo();
-  assert(pc2.ram == 24);
+  assert(pc2.ram == 32);
   
   List<PC> pcs = [pc2, pc3, pc4];
   List<PC> pcs2 = [pc1, ...pcs];
-  print("\n\n=== PCs RAM ===");
-  for (var pc in pcs2) {
-    print("PC RAM: ${pc.ram}");
-  }
-
-  List<PC> filteredPCs = pcs2.where((pc) => pc.price > 20000).toList();
-  print("\n\n=== FILTERED PCs ===");
-  for (var pc in filteredPCs) {
-    pc.printInfo();
-  }
+  print("pcs2.length = ${pcs2.length}");
+    
 
   // Special made error to show working assert
-  print("=== Upgrade RAM ===");
-  pc3.upgradeRAM(pc3, 8);
+  print("=== Upgrade RAM ===");  
+  add16RAM(pc3);
   pc3.printInfo();
   assert(pc3.ram == 11, "Ram upgrade failed");
 }

@@ -1,7 +1,12 @@
-
 import 'dart:io';
 
 typedef JSON = Map<String, dynamic>;
+
+Function upgradeRAM = (int RamToAdd) {
+    return (PC pc) {
+      pc.ram = pc.ram! + RamToAdd;
+    };
+  };
 
 class PC with PCUpgrade {
   int price;
@@ -13,19 +18,12 @@ class PC with PCUpgrade {
   Set<String> installedPrograms = {};
   List<String> addtionalComponents = [];
 
-  Function upgradeRAM = (PC pc, int RamToAdd) {
-    print("There were ${pc.ram} GB of RAM");
-    int newAmountOfRam = pc.ram! + RamToAdd;
-    print("Now there are $newAmountOfRam GB of RAM");
-    pc.ram = newAmountOfRam;
-  };
-
   PC(
-      {this.price = 2000,
+      {required this.price,
       this.graphicCard,
       this.processor,
       this.ram,
-      this.motherboard});
+      this.motherboard}) : assert(price > 0);
 
   PC.init(
       {this.price = 70000,
